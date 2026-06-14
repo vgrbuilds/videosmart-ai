@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     # Connect to database on startup
     await connect_to_mongo()
+    logger.info(f"CORS origins configured: {origins}")
     yield
     # Close connection on shutdown
     await close_mongo_connection()
