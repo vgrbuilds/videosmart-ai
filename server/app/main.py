@@ -34,7 +34,12 @@ app = FastAPI(
 )
 
 # Set CORS origins
-origins = [o.strip() for o in settings.CLIENT_URL.split(",") if o.strip()]
+raw_origins = [o.strip() for o in settings.CLIENT_URL.split(",") if o.strip()]
+origins = ["http://localhost:5173", "http://localhost", "http://127.0.0.1:5173"]
+for o in raw_origins:
+    normalized = o.rstrip("/")
+    if normalized not in origins:
+        origins.append(normalized)
 
 app.add_middleware(
     CORSMiddleware,
