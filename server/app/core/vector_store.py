@@ -14,7 +14,7 @@ def get_sync_video_chunks_collection():
 
 def get_embeddings():
     return GoogleGenerativeAIEmbeddings(
-        model="models/gemini-embedding-001",
+        model="models/gemini-embedding-2",
         google_api_key=settings.GEMINI_API_KEY
     )
 
