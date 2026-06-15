@@ -1,8 +1,9 @@
 FROM python:3.12-slim
 
-# Install system dependencies
+# Install system dependencies (including nodejs for yt-dlp signature deciphering)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv for fast package installation
