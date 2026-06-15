@@ -18,11 +18,6 @@ def download_youtube_audio(url: str) -> str:
             }
         ],
         "quiet": True,
-        "extractor_args": {
-            "youtube": {
-                "player_client": ["ios"]
-            }
-        }
     }
     
     # Handle optional cookies from env to bypass botguard
@@ -40,6 +35,13 @@ def download_youtube_audio(url: str) -> str:
         with open(cookie_file_path, "w", encoding="utf-8") as f:
             f.write(cookie_content)
         ydl_opts["cookiefile"] = cookie_file_path
+    else:
+        # If no cookies, emulate iOS player client to bypass bot checks
+        ydl_opts["extractor_args"] = {
+            "youtube": {
+                "player_client": ["ios", "default"]
+            }
+        }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
