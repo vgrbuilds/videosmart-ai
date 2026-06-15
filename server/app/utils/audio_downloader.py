@@ -36,10 +36,10 @@ def download_youtube_audio(url: str) -> str:
             f.write(cookie_content)
         ydl_opts["cookiefile"] = cookie_file_path
     else:
-        # If no cookies, emulate iOS player client to bypass bot checks
+        # If no cookies, emulate Android player client (does not require PO Token)
         ydl_opts["extractor_args"] = {
             "youtube": {
-                "player_client": ["ios", "default"]
+                "player_client": ["android", "default"]
             }
         }
 
